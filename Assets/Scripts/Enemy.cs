@@ -10,6 +10,8 @@ public class Enemy : MonoBehaviour
     private Rigidbody _rigidbody;
     [SerializeField]
     private float _speed;
+    [SerializeField]
+    private float _HitPoints;
 
     private float _initialY;
     private void Awake()

@@ -28,15 +28,12 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Start()
     {
-       
-        CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
         Cursor.lockState = CursorLockMode.Confined;
     }
     void Update()
     {
         MovePlayer();
         RotatePlayer();
-
     }
 
     private void RotatePlayer()
