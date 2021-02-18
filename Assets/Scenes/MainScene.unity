@@ -601,6 +601,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a54377c726c9dc4ea35c0ce362cf582, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hitPoints: 100
 --- !u!4 &1217085959 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9013349092636365793, guid: 4da761fe254dd1745bbbf51464f592a7, type: 3}
@@ -1121,10 +1122,6 @@ PrefabInstance:
     - target: {fileID: 4148258655886209621, guid: 5a6a53af595f1a849ab1991216c26bbd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6582998305818002243, guid: 5a6a53af595f1a849ab1991216c26bbd, type: 3}
-      propertyPath: _speed
-      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6582998305818002243, guid: 5a6a53af595f1a849ab1991216c26bbd, type: 3}
       propertyPath: _playerTransform
