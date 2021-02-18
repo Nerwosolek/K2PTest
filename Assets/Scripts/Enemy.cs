@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     private float _speed;
     [SerializeField]
     private float _HitPoints;
+    private EnemyCorrosion _enemyCorrosion;
 
     private float _initialY;
     private void Awake()
@@ -19,6 +20,7 @@ public class Enemy : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
         if (_rigidbody == null) Debug.LogWarning("Attach Rigidbody to Enemy.");
         _initialY = transform.position.y;
+        _enemyCorrosion = GetComponentInChildren<EnemyCorrosion>();
     }
     void FixedUpdate()
     {
@@ -42,5 +44,8 @@ public class Enemy : MonoBehaviour
         _playerTransform = target;
     }
 
-
+    public void AddOnEnemyDealsDamage(EnemyDealsDamageHandler subscriber)
+    {
+        _enemyCorrosion.EnemyDealsDamage += subscriber;
+    }
 }

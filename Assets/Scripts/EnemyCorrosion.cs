@@ -4,11 +4,18 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
+
+public delegate void EnemyDealsDamageHandler(float damagePoints);
 public class EnemyCorrosion : MonoBehaviour
 {
+    #region Events
+    public event EnemyDealsDamageHandler EnemyDealsDamage;
+    #endregion
+
+
     [SerializeField]
     private float _damage;
-    // Start is called before the first frame update
+   
     [SerializeField]
     private float _hitInterval;
     [SerializeField]
@@ -21,14 +28,13 @@ public class EnemyCorrosion : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.CompareTag("Player"))
         {
             CountDown();
             if (_lastHitTime > _hitInterval)
             {
                 _lastHitTime = 0f;
-                var ps = other.GetComponent<PlayerStats>();
-                if (ps != null) ps.TakeDamage(_damage);
+                EnemyDealsDamage?.Invoke(_damage);
             }
         }
     }

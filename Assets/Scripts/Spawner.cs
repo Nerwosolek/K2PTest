@@ -15,7 +15,8 @@ public class Spawner : MonoBehaviour
     [SerializeField]
     private Transform[] _spawnPoints;
     private Transform _playerTransform;
-    private float _spawnHeight = 0.5f;
+    private PlayerStats _pStats;
+    private readonly float _spawnHeight = 0.5f;
     [SerializeField]
     private bool _spawningEnabled;
     private void Awake()
@@ -23,7 +24,11 @@ public class Spawner : MonoBehaviour
         if (_enemyPrefab == null) Debug.LogWarning("Please drop enemy prefab to enable spawning");
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player == null) Debug.LogWarning("Couldn't find object tagged \"Player\" in the scene.");
-        else _playerTransform = player.transform;
+        else
+        {
+            _playerTransform = player.transform;
+            _pStats = player.GetComponent<PlayerStats>();
+        }
         if (_spawnPoints == null || _spawnPoints.Length == 0) Debug.LogWarning("There is no spawn point defined.");
         if (_maxSpawnInterval < _minSpawnInterval) _maxSpawnInterval = _minSpawnInterval;
     }
@@ -52,6 +57,7 @@ public class Spawner : MonoBehaviour
             GameObject enemy = Instantiate(_enemyPrefab, new Vector3(sp.position.x, _spawnHeight, sp.position.z), Quaternion.identity);
             Enemy enemyComponent = enemy.GetComponent<Enemy>();
             enemyComponent.SetTarget(_playerTransform);
+            enemyComponent.AddOnEnemyDealsDamage(_pStats.TakeDamage);
         }
     }
 }
