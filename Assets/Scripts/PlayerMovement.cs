@@ -52,6 +52,6 @@ public class PlayerMovement : MonoBehaviour
     {
         _xAxisInput = Input.GetAxis("Horizontal");
         _zAxisInput = Input.GetAxis("Vertical");
-        transform.position = transform.position + new Vector3(_speed * Time.deltaTime * _xAxisInput, 0f, _speed * Time.deltaTime * _zAxisInput);
+        transform.position = transform.position + new Vector3(_xAxisInput, 0f, _zAxisInput).normalized * _speed * Time.deltaTime;
     }
 }
