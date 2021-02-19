@@ -13,6 +13,9 @@ public class PlayerMovement : MonoBehaviour
     private float _speed;
     private Camera _mainCamera;
     private Plane _groundPlane;
+    private Vector3 _lookAtPoint;
+    public Vector3 LookAtPoint { get => _lookAtPoint; }
+    public Vector3 ShootAtPoint { get; set; }
 
     private void Awake()
     {
@@ -40,9 +43,11 @@ public class PlayerMovement : MonoBehaviour
     {
         Ray r = _mainCamera.ScreenPointToRay(Input.mousePosition);
         _groundPlane.Raycast(r, out float distance);
-        Vector3 lookAtPoint = r.GetPoint(distance);
-        lookAtPoint.y = transform.position.y;
-        transform.LookAt(lookAtPoint);
+        Vector3 temp = r.GetPoint(distance);
+        ShootAtPoint = temp;
+        temp.y = transform.position.y;
+        _lookAtPoint = temp;
+        transform.LookAt(LookAtPoint);
     }
 
     private void MovePlayer()
