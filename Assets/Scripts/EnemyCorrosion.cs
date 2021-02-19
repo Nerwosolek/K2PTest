@@ -8,10 +8,7 @@ using UnityEngine;
 public delegate void EnemyDealsDamageHandler(float damagePoints);
 public class EnemyCorrosion : MonoBehaviour
 {
-    #region Events
     public event EnemyDealsDamageHandler EnemyDealsDamage;
-    #endregion
-
 
     [SerializeField]
     private float _damage;

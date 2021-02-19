@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 4148258655886209608}
   - component: {fileID: 4148258655886209620}
   - component: {fileID: 6582998305818002243}
+  - component: {fileID: 1223857747070412193}
   m_Layer: 0
   m_Name: Bolek
   m_TagString: Enemy
@@ -188,4 +189,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerTransform: {fileID: 0}
   _speed: 9
-  _HitPoints: 0
+  _HitPoints: 10
+--- !u!114 &1223857747070412193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4148258655886209609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 894dd346164a1b746abc6e622b5f2e5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHP: 10
