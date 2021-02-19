@@ -4,24 +4,26 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public delegate void PlayerDeathHandler();
+public delegate void PlayerDropHP(float percent);
 public class PlayerStats : MonoBehaviour
 {
     public event PlayerDeathHandler OnPlayerDeath;
+    public event PlayerDropHP OnHPDrop;
     [SerializeField]
+    private float _maxHitPoints;
+    
     private float _hitPoints;
 
-    // Update is called once per frame
-    void Update()
+    private void Awake()
     {
-        if (_hitPoints < 0)
-        {
-            OnPlayerDeath?.Invoke();
-        }
+        _hitPoints = _maxHitPoints;
     }
+    // Update is called once per frame
 
     public void TakeDamage(float damage)
     {
         _hitPoints -= damage;
-        // update UI;
+        OnHPDrop?.Invoke(_hitPoints / _maxHitPoints);
+        OnPlayerDeath?.Invoke();
     }
 }
