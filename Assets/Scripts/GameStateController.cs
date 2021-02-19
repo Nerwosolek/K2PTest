@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class GameStateController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField]
+    Texture2D cursorArrow;
+    private int _enemyKilled;
+    private UIManager _uiManager;
+
+    private void Awake()
+    {
+        _uiManager = FindObjectOfType<UIManager>();
+        if (_uiManager == null) Debug.LogWarning("Please put UIManager on the scene.");
+    }
     void Start()
     {
-        
+        Cursor.SetCursor(cursorArrow, new Vector2(16f, 16f), CursorMode.Auto);
+        _enemyKilled = 0;
+        if (_uiManager != null) _uiManager.UpdateKillCount(_enemyKilled);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnEnemyDeath()
     {
-        
+        _enemyKilled++;
+        if (_uiManager != null) _uiManager.UpdateKillCount(_enemyKilled);
     }
 }
