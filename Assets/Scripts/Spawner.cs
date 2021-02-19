@@ -16,6 +16,7 @@ public class Spawner : MonoBehaviour
     private Transform[] _spawnPoints;
     private Transform _playerTransform;
     private PlayerStats _pStats;
+    private GameStateController _gameManager;
     private readonly float _spawnHeight = 0.5f;
     [SerializeField]
     private bool _spawningEnabled;
@@ -29,6 +30,8 @@ public class Spawner : MonoBehaviour
             _playerTransform = player.transform;
             _pStats = player.GetComponent<PlayerStats>();
         }
+        _gameManager = GameObject.FindObjectOfType<GameStateController>();
+        if (_gameManager == null) Debug.LogWarning("There is no GameStateController in the scene.");
         if (_spawnPoints == null || _spawnPoints.Length == 0) Debug.LogWarning("There is no spawn point defined.");
         if (_maxSpawnInterval < _minSpawnInterval) _maxSpawnInterval = _minSpawnInterval;
     }
@@ -58,6 +61,8 @@ public class Spawner : MonoBehaviour
             Enemy enemyComponent = enemy.GetComponent<Enemy>();
             enemyComponent.SetTarget(_playerTransform);
             enemyComponent.AddOnEnemyDealsDamage(_pStats.TakeDamage);
+            var enemyHPManager = enemy.GetComponent<HPManager>();
+            if (enemyHPManager != null) enemyHPManager.OnDeath += _gameManager.OnEnemyDeath;
         }
     }
 }
