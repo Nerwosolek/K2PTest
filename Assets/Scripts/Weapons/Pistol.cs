@@ -8,6 +8,9 @@ public class Pistol : AbstractWeapon
     float _speed;
     [SerializeField]
     float _range;
+
+    public override Weapons Name { get => Weapons.Pistol; }
+
     public override void Shoot(Vector3 spawn, Vector3 target)
     {
         GameObject bullet = Instantiate(Bullet, spawn, Quaternion.LookRotation(target - spawn));

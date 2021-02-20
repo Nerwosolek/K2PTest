@@ -5,7 +5,7 @@ using UnityEngine;
 
 public delegate void PlayerDeathHandler();
 public delegate void PlayerDropHP(float percent);
-public class PlayerStats : MonoBehaviour
+public class PlayerStats : MonoBehaviour, IDamageble
 {
     public event PlayerDeathHandler OnPlayerDeath;
     public event PlayerDropHP OnHPDrop;
@@ -18,7 +18,6 @@ public class PlayerStats : MonoBehaviour
     {
         _hitPoints = _maxHitPoints;
     }
-    // Update is called once per frame
 
     public void TakeDamage(float damage)
     {

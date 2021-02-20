@@ -13,11 +13,20 @@ public class WeaponStash : MonoBehaviour
     [SerializeField]
     PlayerMovement _playerMovement;
     private int _weapInd;
+    private UIManager _uiManager;
 
     private void Awake()
     {
-        _weapInd = 0;
+        for (int i = 0; i < weapons.Length; i++)
+        {
+            weapons[i] = Instantiate(weapons[i]);
+        }
+        _weapInd = (int)Weapons.Pistol;
         _currentWeapon = weapons[_weapInd];
+        _uiManager = FindObjectOfType<UIManager>();
+        if (_uiManager == null) Debug.LogWarning("Couldn't find UIManager in the scene.");
+        else _uiManager.SetWeapon(_currentWeapon.Name);
+        
     }
 
     private void Update()
@@ -29,6 +38,7 @@ public class WeaponStash : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             _currentWeapon = weapons[(++_weapInd) % weapons.Length];
+            if (_uiManager != null) _uiManager.SetWeapon(_currentWeapon.Name);
         }
     }
 }

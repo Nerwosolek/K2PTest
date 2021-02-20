@@ -21,7 +21,7 @@ public class PistolBullet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            collision.gameObject.GetComponent<HPManager>().TakeDamage(Speed * _dmgModifier);
+            collision.gameObject.GetComponent<IDamageble>().TakeDamage(Speed * _dmgModifier);
         }
     }
 }
