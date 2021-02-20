@@ -35,5 +35,7 @@ public class GameStateController : MonoBehaviour
         _uiManager.ShowGameOver();
         var pm = GameObject.FindObjectOfType<PlayerMovement>();
         pm.enabled = false;
+        var st = GameObject.FindObjectOfType<WeaponStash>();
+        st.enabled = false;
     }
 }
