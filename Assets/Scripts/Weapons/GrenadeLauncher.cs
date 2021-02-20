@@ -31,6 +31,7 @@ public class GrenadeLauncher : AbstractWeapon
             dir *= vp;
             dir.y = vp;
             rb.AddForce(dir, ForceMode.Impulse);
+
             sw.Restart();
         }
     }

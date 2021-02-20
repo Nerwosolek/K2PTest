@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerTransform: {fileID: 0}
-  _speed: 9
+  _speed: 5
   _HitPoints: 10
 --- !u!114 &1223857747070412193
 MonoBehaviour:

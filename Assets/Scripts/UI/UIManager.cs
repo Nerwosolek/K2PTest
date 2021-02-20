@@ -23,4 +23,9 @@ public class UIManager : MonoBehaviour
         _grenadeImg.SetActive(name == Weapons.GrenadeLauncher);
         _pistolImg.SetActive(name == Weapons.Pistol);
     }
+
+    internal void ShowGameOver()
+    {
+        
+    }
 }

@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 1581709733}
   m_Layer: 0
   m_Name: ShootingPoint
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 1787356664}
   m_Layer: 0
   m_Name: Nose
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -533,5 +533,5 @@ MonoBehaviour:
   weapons:
   - {fileID: 1722068440387581627, guid: d9a7f77151e927a428eee1215e96cbbe, type: 3}
   - {fileID: 6867082456165762316, guid: d238e99bc86c1b946baaa160ca75397c, type: 3}
-  _spawnPoint: {fileID: 1787356663}
+  _spawnPoint: {fileID: 1581709733}
   _playerMovement: {fileID: 6730946820261900490}

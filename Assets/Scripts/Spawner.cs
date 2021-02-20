@@ -29,11 +29,17 @@ public class Spawner : MonoBehaviour
         {
             _playerTransform = player.transform;
             _pStats = player.GetComponent<PlayerStats>();
+            _pStats.OnPlayerDeath += PlayerDeathCleanup;
         }
         _gameManager = GameObject.FindObjectOfType<GameStateController>();
         if (_gameManager == null) Debug.LogWarning("There is no GameStateController in the scene.");
         if (_spawnPoints == null || _spawnPoints.Length == 0) Debug.LogWarning("There is no spawn point defined.");
         if (_maxSpawnInterval < _minSpawnInterval) _maxSpawnInterval = _minSpawnInterval;
+    }
+
+    private void PlayerDeathCleanup()
+    {
+        StopCoroutine(nameof(SpawningRoutine));
     }
 
     private void Start()

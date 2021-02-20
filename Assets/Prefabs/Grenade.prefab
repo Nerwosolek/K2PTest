@@ -109,6 +109,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e80ab7528089e294fbecefca37bf7bae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _dmgRadius: 4
+  _maxDmg: 20
+  _impact: 100
 --- !u!54 &8315930415336519601
 Rigidbody:
   m_ObjectHideFlags: 0
