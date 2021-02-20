@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 public delegate void OnDeathHandler();
-public class HPManager : MonoBehaviour
+public class HPManager : MonoBehaviour, IDamageble
 {
     public event OnDeathHandler OnDeath;
     [SerializeField]

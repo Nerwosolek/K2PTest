@@ -1,25 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class GrenadeLauncher : AbstractWeapon
 {
+    [Tooltip("ms between grenades launches.")]
     [SerializeField]
-    private float _power;
+    private long _launchInterval;
+    private float _g;
+    private Stopwatch sw;
+    public GrenadeLauncher()
+    {
+        _g = Mathf.Abs(Physics.gravity.y);
+        sw = new Stopwatch();
+    }
+    public override Weapons Name => Weapons.GrenadeLauncher;
+
     public override void Shoot(Vector3 fromPosition, Vector3 atPosition)
     {
-        Debug.Log(Physics.gravity);
-        Debug.Log(fromPosition.y);
-        GameObject grenade = Instantiate(Bullet, fromPosition, Quaternion.identity);
-        var rb = grenade.GetComponent<Rigidbody>();
-        var dir = (atPosition - fromPosition);
-        dir.y = 0;
-        var dist = dir.magnitude;
-        dir.Normalize();
-        //float vp = Mathf.Sqrt(Mathf.Abs(Physics.gravity.y) * dist / 2);
-        float vp = dist * Mathf.Abs(Physics.gravity.y) / Mathf.Sqrt(2 * Mathf.Abs(Physics.gravity.y) * (dist + fromPosition.y));
-        dir *= vp;
-        dir.y = vp;
-        rb.AddForce(dir, ForceMode.Impulse);
+     //   if (sw.ElapsedMilliseconds > _launchInterval)
+       // {
+            GameObject grenade = Instantiate(Bullet, fromPosition, Quaternion.identity);
+            var rb = grenade.GetComponent<Rigidbody>();
+            var dir = (atPosition - fromPosition);
+            dir.y = 0;
+            var dist = dir.magnitude;
+            dir.Normalize();
+            float vp = dist * _g / Mathf.Sqrt(2 * _g * (dist + fromPosition.y));
+            dir *= vp;
+            dir.y = vp;
+            rb.AddForce(dir, ForceMode.Impulse);
+            sw.Restart();
+        //}
     }
 }
