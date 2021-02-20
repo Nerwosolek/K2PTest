@@ -10,7 +10,7 @@ public class GrenadeLauncher : AbstractWeapon
     private long _launchInterval;
     private float _g;
     private Stopwatch sw;
-    public GrenadeLauncher()
+    private void Awake()
     {
         _g = Mathf.Abs(Physics.gravity.y);
         sw = new Stopwatch();
@@ -19,8 +19,8 @@ public class GrenadeLauncher : AbstractWeapon
 
     public override void Shoot(Vector3 fromPosition, Vector3 atPosition)
     {
-     //   if (sw.ElapsedMilliseconds > _launchInterval)
-       // {
+        if (sw.ElapsedMilliseconds > _launchInterval || !sw.IsRunning)
+        {
             GameObject grenade = Instantiate(Bullet, fromPosition, Quaternion.identity);
             var rb = grenade.GetComponent<Rigidbody>();
             var dir = (atPosition - fromPosition);
@@ -32,6 +32,6 @@ public class GrenadeLauncher : AbstractWeapon
             dir.y = vp;
             rb.AddForce(dir, ForceMode.Impulse);
             sw.Restart();
-        //}
+        }
     }
 }

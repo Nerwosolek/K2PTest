@@ -17,6 +17,10 @@ public class WeaponStash : MonoBehaviour
 
     private void Awake()
     {
+        for (int i = 0; i < weapons.Length; i++)
+        {
+            weapons[i] = Instantiate(weapons[i]);
+        }
         _weapInd = (int)Weapons.Pistol;
         _currentWeapon = weapons[_weapInd];
         _uiManager = FindObjectOfType<UIManager>();
