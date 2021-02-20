@@ -12,6 +12,8 @@ public class UIManager : MonoBehaviour
     GameObject _grenadeImg;
     [SerializeField]
     GameObject _pistolImg;
+    [SerializeField]
+    GameObject _gameOverImg;
 
     public void UpdateKillCount(int totalKills)
     {
@@ -26,6 +28,6 @@ public class UIManager : MonoBehaviour
 
     internal void ShowGameOver()
     {
-        
+        _gameOverImg.SetActive(true);
     }
 }

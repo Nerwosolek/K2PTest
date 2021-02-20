@@ -23,6 +23,7 @@ public class PlayerStats : MonoBehaviour, IDamageble
     {
         _hitPoints -= damage;
         OnHPDrop?.Invoke(_hitPoints / _maxHitPoints);
-        OnPlayerDeath?.Invoke();
+        if (_hitPoints <= 0f)
+            OnPlayerDeath?.Invoke();
     }
 }
